@@ -113,7 +113,7 @@ func GetYearCodeFromYear(year string) string {
 		return "n"
 	default:
 		//没匹配上直接返回0
-		return "0"
+		return "-1"
 	}
 }
 
@@ -198,7 +198,7 @@ func GetYearFromYearCodeCurrent30Years(yearCode string) int {
 	case "n":
 		return 2022
 	}
-	return 0
+	return -1
 }
 
 //根据VIN码以及年份代码获得VIN年份信息
