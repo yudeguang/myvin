@@ -283,11 +283,12 @@ func getBestMutchModelYear(years []int, madeYear int) int {
 	if len(years) == 0 {
 		return -1
 	}
-	modelYear := 10000
+	modelYear := -1
+	difference := 10000
 	for _, year := range years {
-		x := abs(year - madeYear)
-		if modelYear > x {
+		if x := abs(year - madeYear); x < difference {
 			modelYear = year
+			difference = x
 		}
 	}
 	return modelYear
