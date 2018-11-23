@@ -272,7 +272,7 @@ func GetYearFromYearCodePlus(yearCode string, madeYear int) int {
 	case "y":
 		years = []int{2000, 2030}
 	default:
-		return -1
+		return madeYear
 	}
 	return getBestMutchModelYear(years, madeYear)
 
