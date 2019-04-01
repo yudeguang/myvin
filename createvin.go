@@ -9,7 +9,7 @@ import (
 )
 
 //根据样本VIN码生成与之最为接近的N个VIN码
-func getClosestVinsFrom(vin string, num int) []string {
+func GetClosestVinsFrom(vin string, num int) []string {
 	vins := make([]string, 0, num)
 	if len(vin) != 17 {
 		return vins
