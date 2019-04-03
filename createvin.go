@@ -30,7 +30,7 @@ func GetClosestVinsFrom(vin string, num int) []string {
 	for _, cur_serial_number := range closestSerialNumbers {
 		vin_last_6 := get_vin_last_6_from(x, cur_serial_number)
 		vin = getOneVinFrom(vin_8, year_code, factory_code, vin_last_6)
-		vins = append(vins, vin)
+		vins = append(vins, strings.ToUpper(vin))
 	}
 	return vins
 }
