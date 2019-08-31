@@ -59,6 +59,35 @@ func GetClosestVinsFrom(vin string, num int) []string {
 	return vins
 }
 
+//根据样本VIN码生成与之最为接近的N个VIN码,第9位为非校校位的情况
+func GetClosestVinsNotFitForCheckRuleFrom(vin string, num int) []string {
+	vins := make([]string, 0, num)
+	if len(vin) != 17 {
+		return vins
+	}
+	vin_8 := vin[0:8]
+	year_code := GetYearCodeFromVin(vin)
+	factory_code := GetFactoryCodeFromVin(vin)
+	check_code := vin[8:9]
+	vin_last_6 := stringsx.Right(vin, 6)
+
+	x, cur_serial_number, cur_serial_number_begin, cur_serial_number_end, err := split_vin_last_6(vin_last_6)
+
+	if err != nil {
+		return vins
+	}
+	closestSerialNumbers := getClosestSerialNumbersFrom(cur_serial_number, cur_serial_number_begin, cur_serial_number_end, num)
+	//log.Println(closestSerialNumbers)
+	//判断最后6位是否是数字
+	for _, cur_serial_number := range closestSerialNumbers {
+		vin_last_6 := get_vin_last_6_from(x, cur_serial_number)
+		//vin = getOneVinFrom(vin_8, year_code, factory_code, vin_last_6)
+		vin = vin_8 + check_code + year_code + factory_code + vin_last_6
+		vins = append(vins, strings.ToUpper(vin))
+	}
+	return vins
+}
+
 //获得最为接近的相关序列号
 func getClosestSerialNumbersFrom(cur_serial_number, cur_serial_number_begin, cur_serial_number_end, num int) []int {
 	result := make([]int, 0, num)
