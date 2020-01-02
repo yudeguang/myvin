@@ -167,5 +167,5 @@ func split_vin_last_6(vin_last_6 string) (x string, cur_serial_number, serial_nu
 	if err == nil {
 		return vin_last_6[0:5], n, 0, 9, nil
 	}
-	return x, cur_serial_number, 0, 0, fmt.Errorf("此为非法VIN码")
+	return x, cur_serial_number, 0, 0, fmt.Errorf("此为非法VIN 码")
 }
