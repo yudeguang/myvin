@@ -1,6 +1,7 @@
 package myvin
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -125,6 +126,17 @@ func GetYearCodeFromVin(vin string) string {
 //从VIN码中获得工厂代码
 func GetFactoryCodeFromVin(vin string) string {
 	return vin[10:11]
+}
+
+func GetVin8YearCodeFactoryCodeVinlast6(vin string) (vin8, yearCode, factoryCode, vinLast6 string, err error) {
+	if len(vin) != 17 {
+		err = fmt.Errorf("vin必须是17位")
+	}
+	vin8 = vin[0:8]
+	yearCode = vin[9:10]
+	factoryCode = vin[10:11]
+	vinLast6 = vin[11:]
+	return
 }
 
 //输入年份代码，当前仍然在路上运行的车辆年份
