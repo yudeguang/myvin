@@ -1,6 +1,8 @@
 package myvin
 
 import (
+	"github.com/yudeguang/stringsx"
+	"strconv"
 	"strings"
 )
 
@@ -208,4 +210,43 @@ func vinToInt(vinStr string) int {
 	default:
 		return -1
 	}
+}
+
+//判断最后6位是不是数字,是数字就合法
+func IsVinLast6Legal(vin string) bool {
+	vinLast6 := stringsx.Right(vin, 6)
+	if len(vinLast6) != 6 {
+		return false
+	}
+	_, err := strconv.Atoi(vinLast6)
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+//判断最后5位是不是数字,是数字就合法
+func IsVinLast5Legal(vin string) bool {
+	vinLast5 := stringsx.Right(vin, 5)
+	if len(vinLast5) != 5 {
+		return false
+	}
+	_, err := strconv.Atoi(vinLast5)
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+//判断最后4位是不是数字,是数字就合法
+func IsVinLast4Legal(vin string) bool {
+	vinLast4 := stringsx.Right(vin, 4)
+	if len(vinLast4) != 4 {
+		return false
+	}
+	_, err := strconv.Atoi(vinLast4)
+	if err != nil {
+		return false
+	}
+	return true
 }
