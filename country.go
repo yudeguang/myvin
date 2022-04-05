@@ -104,6 +104,13 @@ var countries = []country{
 		NameZh: "尼日利亚",
 	},
 	{
+		From:   "HA",
+		To:     "HZ",
+		NameEn: "China",
+		NameZh: "中国",
+	},
+
+	{
 		From:   "JA",
 		To:     "J0",
 		NameEn: "Japan",
