@@ -435,6 +435,12 @@ var countries = []country{
 		NameZh: "立陶宛",
 	},
 	{
+		From:   "Z6",
+		To:     "Z9",
+		NameEn: "Russia",
+		NameZh: "俄罗斯",
+	},
+	{
 		From:   "1A",
 		To:     "10",
 		NameEn: "United States",
