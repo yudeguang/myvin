@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//通过年份算出年份代码
+// 通过年份算出年份代码
 func GetYearCodeFromYear(year string) string {
 	switch year {
 	case "1971":
@@ -112,18 +112,24 @@ func GetYearCodeFromYear(year string) string {
 		return "m"
 	case "2022":
 		return "n"
+	case "2023":
+		return "P"
+	case "2024":
+		return "r"
+	case "2025":
+		return "s"
 	default:
 		//没匹配上直接返回0
 		return "-1"
 	}
 }
 
-//从VIN中获得年份代码
+// 从VIN中获得年份代码
 func GetYearCodeFromVin(vin string) string {
 	return vin[9:10]
 }
 
-//从VIN码中获得工厂代码
+// 从VIN码中获得工厂代码
 func GetFactoryCodeFromVin(vin string) string {
 	return vin[10:11]
 }
@@ -139,22 +145,16 @@ func GetVin8YearCodeFactoryCodeVinlast6(vin string) (vin8, yearCode, factoryCode
 	return
 }
 
-//输入年份代码，当前仍然在路上运行的车辆年份
+// 输入年份代码，当前仍然在路上运行的车辆年份
 func GetYearFromVinCurrent30Years(vin string) int {
 	return GetYearFromYearCodeCurrent30Years(vin[9:10])
 }
 
-//输入年份代码，当前仍然在路上运行的车辆年份
-//(汽车一般15年报废,只有最近30年左右的汽车年份有意义，VIN年份信息每30年轮回一次)
+// 输入年份代码，当前仍然在路上运行的车辆年份
+// (汽车一般15年报废,只有最近30年左右的汽车年份有意义，VIN年份信息每30年轮回一次)
 func GetYearFromYearCodeCurrent30Years(yearCode string) int {
 	yearCode = strings.ToLower(yearCode)
 	switch yearCode {
-	case "p":
-		return 1993
-	case "r":
-		return 1994
-	case "s":
-		return 1995
 	case "t":
 		return 1996
 	case "v":
@@ -209,16 +209,22 @@ func GetYearFromYearCodeCurrent30Years(yearCode string) int {
 		return 2021
 	case "n":
 		return 2022
+	case "p":
+		return 2023
+	case "r":
+		return 2024
+	case "s":
+		return 2025
 	}
 	return -1
 }
 
-//根据VIN码以及年份代码获得VIN年份信息
+// 根据VIN码以及年份代码获得VIN年份信息
 func GetYearFromVinPlus(vin string, madeYear int) int {
 	return GetYearFromYearCodePlus(vin[9:10], madeYear)
 }
 
-//根据当前生产日期以及年份代码获得VIN年份信息
+// 根据当前生产日期以及年份代码获得VIN年份信息
 func GetYearFromYearCodePlus(yearCode string, madeYear int) int {
 	yearCode = strings.ToLower(yearCode)
 	var years []int
@@ -290,7 +296,7 @@ func GetYearFromYearCodePlus(yearCode string, madeYear int) int {
 
 }
 
-//根据若干年份，返回最接近的年份
+// 根据若干年份，返回最接近的年份
 func getBestMutchModelYear(years []int, madeYear int) int {
 	if len(years) == 0 {
 		return -1
@@ -306,7 +312,7 @@ func getBestMutchModelYear(years []int, madeYear int) int {
 	return modelYear
 }
 
-//绝对值
+// 绝对值
 func abs(x int) int {
 	if x < 0 {
 		return -x
